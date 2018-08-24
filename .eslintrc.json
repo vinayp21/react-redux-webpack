@@ -1,0 +1,14 @@
+{
+	"extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"parser": "babel-eslint",
+	"rules": {
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"arrow-body-style": 0,
+		"import/no-named-as-default": 0,
+		"import/no-named-as-default-member": 0
+	}
+}
