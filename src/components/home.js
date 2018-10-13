@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Home extends Component {
 	constructor() {
@@ -16,6 +17,9 @@ class Home extends Component {
 
 	render() {
 		const { test } = this.state;
+		const {
+			data: { name }
+		} = this.props;
 		return (
 			<div>
 				<button type="button" onClick={this.redirectUrl} className="btn btn-primary">
@@ -23,13 +27,20 @@ class Home extends Component {
 				</button>
 				Hello from state
 				{test}
+				{name}
 			</div>
 		);
 	}
 }
 
+const mapStatetoProps = state => {
+	return {
+		data: state.test.data
+	};
+};
 Home.propTypes = {
-	history: PropTypes.func.isRequired
+	history: PropTypes.func.isRequired,
+	data: PropTypes.object
 };
 
-export default Home;
+export default connect(mapStatetoProps)(Home);
