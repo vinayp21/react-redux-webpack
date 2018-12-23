@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
 
 class Home extends Component {
 	constructor() {
@@ -11,8 +12,8 @@ class Home extends Component {
 	}
 
 	redirectUrl = () => {
-		const { history } = this.props;
-		history.push('/');
+		const { dispatch } = this.props;
+		dispatch(push('/'));
 	};
 
 	render() {
@@ -38,8 +39,9 @@ const mapStatetoProps = state => {
 		data: state.test.data
 	};
 };
+
 Home.propTypes = {
-	history: PropTypes.func.isRequired,
+	dispatch: PropTypes.func.isRequired,
 	data: PropTypes.object
 };
 
