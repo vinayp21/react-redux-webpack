@@ -6,7 +6,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import * as rootReducer from '../reducers';
 import { firstAction } from '../actions/testAction';
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory({});
 
 const combinedRootReducer = combineReducers({
 	...rootReducer,
@@ -14,7 +14,5 @@ const combinedRootReducer = combineReducers({
 });
 
 const middleware = [thunk, routerMiddleware(history), logger];
-const store = createStore(combinedRootReducer, {}, applyMiddleware(...middleware));
+export const store = createStore(combinedRootReducer, {}, applyMiddleware(...middleware));
 store.dispatch(firstAction());
-
-export default store;
