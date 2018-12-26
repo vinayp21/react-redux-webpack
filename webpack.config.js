@@ -1,14 +1,25 @@
-const path = require('path');
+const { resolve } = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = function(env) {
 	return {
-		entry: './src/index.js',
+		entry: {
+			main: './src/index.js',
+			dom: ['react', 'react-dom']
+		},
 		mode: env.production ? 'production' : 'development',
+		output: {
+			path: resolve(__dirname, 'dist'),
+			filename: 'js/[name].js',
+			chunkFilename: 'js/[name].bundle.js',
+			publicPath: '/'
+		},
 		devServer: {
-			contentBase: path.resolve(__dirname, 'dist'),
+			contentBase: resolve(__dirname, 'dist'),
 			historyApiFallback: true
 		},
+		devtool: 'source-map',
 		module: {
 			rules: [
 				{
@@ -36,7 +47,16 @@ module.exports = function(env) {
 			new HtmlWebPackPlugin({
 				template: './index.html',
 				filename: './index.html'
-			})
-		]
+			}),
+			new BundleAnalyzerPlugin()
+		],
+		optimization: {
+			splitChunks: {
+				chunks: 'all'
+			}
+		},
+		resolve: {
+			alias: {}
+		}
 	};
 };
