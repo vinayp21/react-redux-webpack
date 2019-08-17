@@ -15,4 +15,5 @@ const combinedRootReducer = combineReducers({
 
 const middleware = [thunk, routerMiddleware(history), logger];
 export const store = createStore(combinedRootReducer, {}, applyMiddleware(...middleware));
-store.dispatch(firstAction());
+
+store.dispatch(firstAction(store.dispatch));

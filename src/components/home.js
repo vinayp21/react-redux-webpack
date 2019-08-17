@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
+import { Consumer } from './ContextState';
 
 class Home extends Component {
 	constructor() {
@@ -29,6 +30,16 @@ class Home extends Component {
 				Hello from state
 				{test}
 				{name}
+				<Consumer>
+					{({ data, updateData }) => (
+						<div>
+							<div>{data.from}</div>
+							<button type="button" onClick={() => updateData()}>
+								Update Context !
+							</button>
+						</div>
+					)}
+				</Consumer>
 			</div>
 		);
 	}
