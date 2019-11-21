@@ -2,7 +2,7 @@
 
 import testAction from '../constants/testConstants';
 
-export const firstAction = dispatch => {
+export const firstAction = () => dispatch => {
 	setTimeout(() => {
 		dispatch({
 			type: testAction.TEST_CONSTANT,
